@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\AIController;
 
 // Authentication routes
 Auth::routes();
@@ -75,3 +76,6 @@ Route::group(['prefix' => 'timetable'], function () {
 
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
+
+Route::get('/suggest-deadline', [AIController::class, 'showForm'])->name('suggest.deadline.form');
+Route::post('/suggest-deadline', [AIController::class, 'suggestDeadline'])->name('suggest.deadline');
